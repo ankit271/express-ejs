@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>   
+<style>
+
+    .container {
+         padding: 2rem 0rem;
+    }
+</style>
+</head>
+<body>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user=> { %>
+                    <tr>
+                        <th>
+                            <%= user.first_name %>
+                        </th>
+                        <td>
+                            <%= user.last_name %>
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td>
+                            <%= user.is_active===true ? 'Active' : 'De-Active' %>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-success"
+                                href="http://localhost:3000/api/user/<%= user._id %>">Edit</a>
+                            <button type="button" class="btn btn-sm btn-danger">Delete</i></button>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
