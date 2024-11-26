@@ -17,25 +17,35 @@
 
 <body>
     <div class="container">
+        <%if (message != '' && message!='Product Created Successfully.') { %>
+            <p><%= message %> </p>
+       <% } else { %>
+
         <table class="table">
             <thead>
                 <tr>                    
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
                 </tr>
             </thead>
             <tbody>
                 <% products.forEach(product => { %>
                     <tr>
-                        <td><%= product.name %></td>
-                        <td><%= product.description %></td>
-                        <td><%= product.price %></td>
+                        <td><%= product.product_name %></td>
+                        <td><%= product.product_description %></td>
+                        <td><%= product.product_price %></td>
+                        <td>
+                            <%= product.product_quantity %>
+                        </td>
                     </tr>
                <% }); %>
                              
             </tbody>
         </table>
+        <% } %>
+        <a href="http://localhost:3000/api/product/create">Create Product</a>
     </div>
 </body>
 </html>
