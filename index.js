@@ -1,8 +1,14 @@
 const express = require('express');
+const session = require('express-session');
 const connect = require('./config/connection');
 const path = require('path');
 const app = new express();
-
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 app.set('view engine', 'ejs');
 app.set('views',path.resolve('./views'));
 app.use(express.urlencoded({ extended : false}))
