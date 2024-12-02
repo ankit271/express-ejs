@@ -10,8 +10,8 @@ async function getUsers(req, res) {
         if(!users){
             return res.status(404).send({message : "No Users found."});
         }
-        res.status(200).render('layout',{users : users, content : './users/index', title : 'User'});
-       
+        // res.status(200).render('layout',{users : users, content : './users/index', title : 'User'});
+        res.status(200).send({users : users });
     } catch (error) {
         logger(0, error.message, 'getUsers'); 
         throw new Error('Error while geting the all users : ' + error.message);
@@ -26,7 +26,7 @@ async function getUser(req, res) {
         if(!user){
             return res.status(404).send({message : "No Users found."});
         }
-        res.status(200).render('./users/edit',{user : user});
+        res.status(200).render('layout',{user : user,content : './users/edit', title : 'Edit User'});
 
     } catch (error) {
         logger(0, error.message, 'getUser');

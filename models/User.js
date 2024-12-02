@@ -24,6 +24,9 @@ const userSchema = new mongoose.Schema({
     is_active:{
         type: Boolean,
         default: true
+    },
+    country:{
+        type: String
     }
 },
 {
@@ -33,3 +36,7 @@ const userSchema = new mongoose.Schema({
 );
 
 module.exports = mongoose.model('User', userSchema);
+
+
+
+

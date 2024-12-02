@@ -1,16 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>    
-<style>
-     .container {
-  padding: 2rem 0rem;
+  
+<h1 style="text-align: center;font-weight: 600;"> Welcome to Iconic</h1>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+<script>
+    
+async function getUserCountByCountry() {
+    const url = "http://localhost:3000/api/login/";
+    try {
+        const response = await fetch(url, { method: 'GET' });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+            
+        loadChart(data);
+      
+    } catch (error) {
+        console.error(error.message);
+    }
 }
-</style>
-</head>
-<body>    
-    <h1 style="text-align: center;font-weight: 600;"> Welcome to Iconic</h1>
-</body>
-</html>
+
+getUserCountByCountry();
+
+function loadChart(chardata){    
+          
+    const data = chardata.data;    
+    
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        title: {
+            text: "Country wise User",
+            horizontalAlign: "left"
+        },
+        data: [{
+            type: "doughnut",
+            startAngle: 60,        
+            indexLabelFontSize: 17,
+            indexLabel: "{label} - #percent%",
+            toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+            dataPoints: data
+        }]
+    });
+    chart.render();
+}
+
+</script>

@@ -15,6 +15,12 @@
         margin-left: 45%;
     }
 </style>
+<script>
+    document.getElementById('pwd').addEventListener('paste', function (e) {
+            e.preventDefault();
+        });
+
+</script>
 </head>
 <body>
     <div class="container">
@@ -35,7 +41,7 @@
             <!-- Password input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="password">Password</label>
-                <input type="password" name="password" class="form-control" />
+                <input type="password" id="pwd" name="password" class="form-control" onpaste="return false;" />
             </div>
                    
             <div class="text-center">                
